@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:couldai_user_app/core/theme/app_colors.dart';
-import 'package:couldai_user_app/main.dart'; // To navigate to HomeScreen
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,16 +13,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToHome();
+    _navigateToNextScreen();
   }
 
-  _navigateToHome() async {
-    await Future.delayed(const Duration(milliseconds: 3000), () {});
+  _navigateToNextScreen() async {
+    // Simulate app initialization
+    await Future.delayed(const Duration(seconds: 3));
+    
     if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
+      // In a real app, you'd check if the user has seen onboarding before.
+      // For now, we always go to onboarding.
+      context.go('/onboarding');
     }
   }
 
@@ -37,6 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Spacer(flex: 2),
               Container(
                 width: 120,
                 height: 120,
